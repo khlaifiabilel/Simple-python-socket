@@ -2,6 +2,13 @@ import socket
 import threading
 import sys
 
+#importing of the SHA256 algo  
+from Crypto.Hash import SHA256
+#importing of the AES algo  
+from Crypto.Cipher import AES
+
+hash = SHA256.new()
+
 #Wait for incoming data from server
 #.decode is used to turn the message in bytes to a string
 def receive(socket, signal):
@@ -34,5 +41,13 @@ receiveThread.start()
 #Send data to server
 #str.encode is used to turn the string message into bytes so it can be sent across the network
 while True:
+    #encryption key 
+    hash = SHA256.new()
     message = input()
+    hash.update('message')
+    hash.digest()
     sock.sendall(str.encode(message))
+
+
+  git config --global user.email "kalifiabillal@gmail.com"
+  git config --global user.name "kalifiabillal"
